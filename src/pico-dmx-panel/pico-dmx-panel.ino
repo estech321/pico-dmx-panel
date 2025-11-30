@@ -28,10 +28,12 @@ Created by DmxOut Smith with help from GitHub Copilot (GPT-4.1)
 #define UNIVERSE_LENGTH 6
 #define BUTTON_PIN 16
 
-
 DmxOutput DmxOut; // Instantiate DmxOutput
 
 uint8_t universe[UNIVERSE_LENGTH + 1];  // Make array size fixed
+
+bool lightOn = false;         // Latch - true = ON, false = OFF
+bool lastButtonState = HIGH;  // Last button reading (using INPUT_PULLUP, so HIGH = not pressed)
 
 void setup() {
   DmxOut.begin(DMX_PIN);      // Bind DMX output to pin 0
@@ -39,26 +41,37 @@ void setup() {
 }
 
 void loop() {
-  // Button is active LOW: pressed = LOW, released = HIGH
-  if (digitalRead(BUTTON_PIN) == LOW) { // If button pressed, turn light ON
-    universe[1] = 255; // DIMMER - Button pressed: send 255 on chan 1
-    universe[2] = 255; // RED - Button pressed: send 255 on chan 2
-    universe[3] = 255; // GREEN - Button pressed: send 255 on chan 3
-    universe[4] = 255; // BLUE - Button pressed: send 255 on chan 4
-    universe[5] = 0; // STROBE - Button pressed: send 0 on chan 5
-    universe[6] = 0; // CONTROL - Button pressed: send *** on chan 6 // CONTROL channel. Not sure what to transmit here yet.
-  } else { // If button released, turn light OFF
-    universe[1] = 0; // DIMMER - Button pressed: send 0 on chan 1
-    universe[2] = 0; // RED - Button pressed: send 0 on chan 2
-    universe[3] = 0; // GREEN - Button pressed: send 0 on chan 3
-    universe[4] = 0; // BLUE - Button pressed: send 0 on chan 4
-    universe[5] = 0; // STROBE - Button pressed: send 0 on chan 5
-    universe[6] = 0; // CONTROL - Button pressed: send *** on chan 6 // CONTROL channel. Not sure what to transmit here yet.
+  // Read button (active LOW: pressed = LOW)
+  bool buttonState = digitalRead(BUTTON_PIN);
+
+  // Detect button press (transition: HIGH → LOW)
+  if (buttonState == LOW && lastButtonState == HIGH) {
+    lightOn = !lightOn; // toggle light state
+    delay(200);         // debounce: simple, optional (fine-tune as needed)
+  }
+
+  // Set DMX universe based on latch state
+  if (lightOn) {
+    universe[1] = 255; // DIMMER - ON
+    universe[2] = 255; // RED - ON
+    universe[3] = 255; // GREEN - ON
+    universe[4] = 255; // BLUE - ON
+    universe[5] = 0;   // STROBE - OFF
+    universe[6] = 0;   // CONTROL - OFF/unknown
+  } else {
+    universe[1] = 0; // DIMMER - OFF
+    universe[2] = 0; // RED - OFF
+    universe[3] = 0; // GREEN - OFF
+    universe[4] = 0; // BLUE - OFF
+    universe[5] = 0; // STROBE - OFF
+    universe[6] = 0; // CONTROL - OFF/unknown
   }
 
   DmxOut.write(universe, UNIVERSE_LENGTH + 1); // Send DMX data
   while (DmxOut.busy()) {
     // Wait for output to finish
   }
+
+  lastButtonState = buttonState; // Store for edge detection
   delay(1);
 }
