@@ -1,24 +1,17 @@
 /* 
-DMX transmitter using Raspberry Pi Pico
+# OVERVIEW
+DMX transmitter using Raspberry Pi Pico.
+A work light switch to allow cheap LED PARs to be used as either work lights (white, full brightness) or run lights (blueish purple, dimmed). They can also be turned off through DMX using this project.
+The idea is to put this circuit in an enclosure with labeled buttons and mount it to the wall near the lights being controlled, and use it like a fancy light switch.
 
-DMX is transmitted over 1 signal wire (and ground) in the Pico setup.
-You'd need to use a 3-pin fixture and determine if you could short DATA- and GND.
-Currently, this program will transmit 1 universe of 3 channels, and set Channel 1 to 174 when the button is pressed.
-
-
--- Supposed DMX chart for cheap knockoff SlimPARS (to be used in catwalk to light booth)
-1	Dimmer
-2	Red
-3	Green
-4	Blue
-5	Strobe
-6	Control
-
--- INFO --
+# TECHNICAL DETAILS
+DMX is transmitted using TTL on GPIO 0. You'd then use a MAX485 TTL to RS232 converter chip in transmit mode to turn GPIO 0's signal to a differential signal suitible for reliable, long DMX runs.
 Uses Pico-DMX library: https://github.com/jostlowe/Pico-DMX
-Created by DmxOut Smith with help from GitHub Copilot (GPT-4.1)
-Modified for latching mode & 3-button control (Work Lights, Blacklight, Off)
-11-30-2025
+Created by Eric Smith with help from GitHub Copilot (GPT-4.1)
+Original codebase: 11-30-2025
+Latest version: 11-30-2025
+
+See repo's README for more information.
 */
 
 #include <Arduino.h>
@@ -27,21 +20,22 @@ Modified for latching mode & 3-button control (Work Lights, Blacklight, Off)
 #define DMX_PIN 0
 #define UNIVERSE_LENGTH 6
 #define BUTTON_WORK_PIN 16
-#define BUTTON_BLACK_PIN 17
+#define BUTTON_RUN_PIN 17
 #define BUTTON_OFF_PIN 18
 
-DmxOutput DmxOut; // Instantiate DmxOutput
+DmxOutput DmxOut; // Instantiate DmxOutput as DmxOut
 
 uint8_t universe[UNIVERSE_LENGTH + 1];  // Make array size fixed
 
 enum LightMode {
   MODE_OFF,
   MODE_WORK,
-  MODE_BLACKLIGHT
+  MODE_RUN
 };
 
-LightMode currentMode = MODE_OFF;
+LightMode currentMode = MODE_OFF; // turn lights off when Pico is powered on
 
+// Create a function to set lights in one of the 3 modes (work, run, off)
 void setLights(LightMode mode) {
   switch (mode) {
     case MODE_WORK:
@@ -53,12 +47,12 @@ void setLights(LightMode mode) {
       universe[5] = 0;   // STROBE
       universe[6] = 0;   // CONTROL
       break;
-    case MODE_BLACKLIGHT:
-      // Blacklight (blue only as pseudo-blacklight)
-      universe[1] = 255; // DIMMER
-      universe[2] = 0;   // RED
+    case MODE_RUN:
+      // Run lights (blue only as pseudo-blacklight)
+      universe[1] = 175; // DIMMER
+      universe[2] = 69;   // RED
       universe[3] = 0;   // GREEN
-      universe[4] = 255; // BLUE (Max BLUE)
+      universe[4] = 230; // BLUE
       universe[5] = 0;   // STROBE
       universe[6] = 0;   // CONTROL
       break;
@@ -78,7 +72,7 @@ void setLights(LightMode mode) {
 void setup() {
   DmxOut.begin(DMX_PIN);      // Bind DMX output to pin 0
   pinMode(BUTTON_WORK_PIN, INPUT_PULLUP);   // Work Lights Button
-  pinMode(BUTTON_BLACK_PIN, INPUT_PULLUP);  // Blacklight Button
+  pinMode(BUTTON_RUN_PIN, INPUT_PULLUP);  // Run Lights Button
   pinMode(BUTTON_OFF_PIN, INPUT_PULLUP);    // Off Button
   setLights(currentMode); // Set initial light state
 }
@@ -90,8 +84,8 @@ void loop() {
   if (digitalRead(BUTTON_WORK_PIN) == LOW) {
     currentMode = MODE_WORK;
   }
-  else if (digitalRead(BUTTON_BLACK_PIN) == LOW) {
-    currentMode = MODE_BLACKLIGHT;
+  else if (digitalRead(BUTTON_RUN_PIN) == LOW) {
+    currentMode = MODE_RUN;
   }
   else if (digitalRead(BUTTON_OFF_PIN) == LOW) {
     currentMode = MODE_OFF;
