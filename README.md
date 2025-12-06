@@ -6,6 +6,10 @@ The idea is to put this circuit in an enclosure with labeled buttons and mount i
 # Technical Details
 DMX is transmitted using TTL on GPIO 0. You'd then use a MAX485 TTL to RS232 converter chip in transmit mode to turn GPIO 0's signal to a differential signal suitible for reliable, long DMX runs.
 
+# Schematic
+A full KiCad schematic file can be found in the "kicad\_schematic" folder. Here's a picture of it:
+![Schematic image](README_assets/schematic_v1.png)
+
 # Credits
 Uses [Pico-DMX library](https://github.com/jostlowe/Pico-DMX) by GitHub user [jostlowe](https://github.com/jostlowe).\
 Created by Eric Smith with help from GitHub Copilot (GPT-4.1)
