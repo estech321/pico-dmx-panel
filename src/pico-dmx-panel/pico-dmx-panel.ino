@@ -19,9 +19,9 @@ See repo's README for more information.
 
 #define DMX_PIN 0
 #define UNIVERSE_LENGTH 6
-#define BUTTON_WORK_PIN 16
-#define BUTTON_RUN_PIN 17
-#define BUTTON_OFF_PIN 18
+#define BUTTON_WORK_PIN 17
+#define BUTTON_RUN_PIN 18
+#define BUTTON_OFF_PIN 19
 
 DmxOutput DmxOut; // Instantiate DmxOutput as DmxOut
 
