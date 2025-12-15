@@ -1954,13 +1954,19 @@
 		)
 	)
 	(junction
-		(at 189.23 95.25)
+		(at 189.23 97.79)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "56c819e9-a715-4a6a-853d-16b4219dd1d6")
 	)
 	(junction
-		(at 189.23 106.68)
+		(at 189.23 116.84)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "caccb320-9916-4146-ae6d-6fb64b23499f")
+	)
+	(junction
+		(at 189.23 109.22)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "eb219132-ee71-4d85-aa74-6f0216f7b819")
@@ -1987,7 +1993,7 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 82.55) (xy 189.23 95.25)
+			(xy 189.23 85.09) (xy 189.23 97.79)
 		)
 		(stroke
 			(width 0)
@@ -1997,7 +2003,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 106.68) (xy 176.53 87.63)
+			(xy 176.53 109.22) (xy 176.53 90.17)
 		)
 		(stroke
 			(width 0)
@@ -2007,7 +2013,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 95.25) (xy 179.07 85.09)
+			(xy 179.07 97.79) (xy 179.07 87.63)
 		)
 		(stroke
 			(width 0)
@@ -2057,7 +2063,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 82.55) (xy 179.07 82.55)
+			(xy 167.64 85.09) (xy 179.07 85.09)
 		)
 		(stroke
 			(width 0)
@@ -2077,7 +2083,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 106.68) (xy 179.07 106.68)
+			(xy 176.53 109.22) (xy 179.07 109.22)
 		)
 		(stroke
 			(width 0)
@@ -2087,13 +2093,23 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 85.09) (xy 167.64 85.09)
+			(xy 179.07 87.63) (xy 167.64 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "9d40b8e3-a9be-4aa0-97a4-ce7a4d64dcdb")
+	)
+	(wire
+		(pts
+			(xy 189.23 119.38) (xy 189.23 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a39d338d-0e53-4feb-9f37-b0d4e52ee2ce")
 	)
 	(wire
 		(pts
@@ -2107,7 +2123,7 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 95.25) (xy 189.23 106.68)
+			(xy 189.23 97.79) (xy 189.23 109.22)
 		)
 		(stroke
 			(width 0)
@@ -2127,7 +2143,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 87.63) (xy 167.64 87.63)
+			(xy 176.53 90.17) (xy 167.64 90.17)
 		)
 		(stroke
 			(width 0)
@@ -2147,7 +2163,7 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 106.68) (xy 189.23 116.84)
+			(xy 189.23 109.22) (xy 189.23 116.84)
 		)
 		(stroke
 			(width 0)
@@ -2290,7 +2306,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 184.15 82.55 0)
+		(at 184.15 85.09 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2298,14 +2314,6 @@
 		(dnp no)
 		(uuid "1dd90558-cfbf-4960-ae92-ed558321bbf5")
 		(property "Reference" "SW1"
-			(at 197.104 81.788 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "WORK"
 			(at 197.104 84.328 0)
 			(effects
 				(font
@@ -2313,8 +2321,16 @@
 				)
 			)
 		)
+		(property "Value" "WORK"
+			(at 197.104 86.868 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Footprint" ""
-			(at 184.15 77.47 0)
+			(at 184.15 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2323,7 +2339,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 184.15 77.47 0)
+			(at 184.15 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2332,7 +2348,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 184.15 82.55 0)
+			(at 184.15 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2357,7 +2373,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 184.15 106.68 0)
+		(at 184.15 109.22 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2365,14 +2381,6 @@
 		(dnp no)
 		(uuid "50d17373-b929-42ce-8505-cfe4f1595499")
 		(property "Reference" "SW3"
-			(at 197.104 107.188 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "OFF"
 			(at 197.104 109.728 0)
 			(effects
 				(font
@@ -2380,8 +2388,16 @@
 				)
 			)
 		)
+		(property "Value" "OFF"
+			(at 197.104 112.268 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Footprint" ""
-			(at 184.15 101.6 0)
+			(at 184.15 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2390,7 +2406,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 184.15 101.6 0)
+			(at 184.15 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2399,7 +2415,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 184.15 106.68 0)
+			(at 184.15 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2632,7 +2648,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 184.15 95.25 0)
+		(at 184.15 97.79 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2640,14 +2656,6 @@
 		(dnp no)
 		(uuid "738d7477-ee50-47a7-a960-83e39786202e")
 		(property "Reference" "SW2"
-			(at 197.104 94.488 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "RUN"
 			(at 197.104 97.028 0)
 			(effects
 				(font
@@ -2655,8 +2663,16 @@
 				)
 			)
 		)
+		(property "Value" "RUN"
+			(at 197.104 99.568 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Footprint" ""
-			(at 184.15 90.17 0)
+			(at 184.15 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2665,7 +2681,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 184.15 90.17 0)
+			(at 184.15 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2674,7 +2690,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 184.15 95.25 0)
+			(at 184.15 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)

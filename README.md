@@ -8,7 +8,7 @@ DMX is transmitted using TTL on GPIO 0. You'd then use a MAX485 TTL to RS232 con
 
 # Schematic
 A full KiCad schematic file can be found in the "kicad\_schematic" folder. Here's a picture of it:
-![Schematic image](README_assets/schematic_v1.png)
+![Schematic image](README_assets/schematic.png)
 
 # Credits
 Uses [Pico-DMX library](https://github.com/jostlowe/Pico-DMX) by GitHub user [jostlowe](https://github.com/jostlowe).\
