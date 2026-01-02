@@ -1,4 +1,6 @@
 # Overview
+<img src="README_assets/final-product.png" alt="Pico DMX Panel" width="200">
+
 DMX transmitter using Raspberry Pi Pico.
 A work light switch to allow cheap LED PARs to be used as either work lights (white, full brightness) or run lights (blueish purple, dimmed). They can also be turned off through DMX using this project.
 The idea is to put this circuit in an enclosure with labeled buttons and mount it to the wall near the lights being controlled, and use it like a fancy light switch.
