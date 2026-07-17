@@ -1,4 +1,4 @@
-Watch the video (here!)[https://www.youtube.com/watch?v=s-PK1Ed9FWc]
+Watch the video [here!](https://www.youtube.com/watch?v=s-PK1Ed9FWc)
 
 # Overview
 
